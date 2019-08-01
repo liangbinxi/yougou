@@ -12,13 +12,38 @@ Page({
   },
   Cates:[],
   onLoad(){
-    this.getCategoryList();
+    const cates = wx.getStorageSync("cates");
+      // console.log(cates)
+      if(!cates){
+        // console.log("没有数据")
+        this.getCategoryList();
+      }else{
+        // console.log("有数据")
+        // console.log(Date.now()-cates.time) 
+        if(Date.now()-cates.time > 1000*10){
+          // console.log("数据己过期")
+          this.getCategoryList();
+        }else{
+          // console.log("数据没过期")
+          this.Cates = cates.data;
+          const leftMenuList = this.Cates.map(v=>({
+            cat_id:v.cat_id,cat_name:v.cat_name
+          }))
+          const rightGoodsList = this.Cates[0].children;
+          this.setData({
+            leftMenuList,
+            rightGoodsList
+          })
+        }
+      }
   },
   getCategoryList(){
     request({url:'/categories'})
     .then(result=>{
-      console.log(result)
+      // console.log(result)
       this.Cates = result;
+      wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
+        
       const leftMenuList = this.Cates.map(v=>({
         cat_id:v.cat_id,cat_name:v.cat_name
       }))
