@@ -1,2 +1,11 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<searchInput></searchInput>
+<Tabs tabs="{{tabs}}" binditemChange="handleItemchange">
+    <block wx:if="{{tabs[0].isActive}}">0</block>
+    <block wx:elif="{{tabs[1].isActive}}">1</block>
+    <block wx:elif="{{tabs[2].isActive}}">2</block>
+</Tabs>
+  
+<scroll-view class="goodsList" scroll-y="true">
+    <view class=""></view>
+</scroll-view>
+  
