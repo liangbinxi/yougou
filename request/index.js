@@ -1,5 +1,9 @@
+
+let ajaxTimes = 0;
 export const request = (params)=>{
     const baseUrl="https://api.zbztb.cn/api/public/v1";
+    ajaxTimes++;
+    wx.showLoading({ title: "加载中" });
     return new Promise((resolve,reject)=>{
         var reqTask = wx.request({
             // url: '',
@@ -15,6 +19,10 @@ export const request = (params)=>{
             },
             fail: (err) => {
                 reject(err)
+            },
+            complete: () => {
+                ajaxTimes--;
+                wx.hideLoading();
             }
         });
           

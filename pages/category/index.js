@@ -1,4 +1,5 @@
-import { request } from "../../request/index.js"
+import { request } from "../../request/index.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data:{
     //分类左侧列表数组
@@ -37,8 +38,8 @@ Page({
         }
       }
   },
-  getCategoryList(){
-    request({url:'/categories'})
+  async getCategoryList(){
+    await request({url:'/categories'})
     .then(result=>{
       // console.log(result)
       this.Cates = result;

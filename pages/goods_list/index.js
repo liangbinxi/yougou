@@ -1,4 +1,5 @@
-import { request } from "../../request/index.js"
+import { request } from "../../request/index.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
     tabs:[
@@ -16,21 +17,25 @@ Page({
     //页码
     pagenum:1,
     //页容量
-    pagesize:5
+    pagesize:10
   },
+  TotalPages:1,
   onLoad(e){
     // console.log(e)
     // console.log(this)
     this.queryParam.cid = e.id;
     this.getGoodsList()
   },
-  getGoodsList(){
-    request({url:"/goods/search",data:this.queryParam})
+  async getGoodsList(){
+    await request({url:"/goods/search",data:this.queryParam})
     .then(res=>{
       // console.log(res)
+      this.TotalPages = Math.ceil(res.total/this.queryParam.pagesize)
+      // console.log(this.TotalPages)
       this.setData({
-        goodsList : res.goods
+        goodsList : [...this.data.goodsList,...res.goods]
       })
+      wx.stopPullDownRefresh();
     })
   },
   handleItemchange(e){
@@ -39,5 +44,33 @@ Page({
     let {tabs} = this.data;
     tabs.forEach((v,i) => i ===index?v.isActive=true:v.isActive=false );
     this.setData({tabs})
+  },
+  onPullDownRefresh(){
+    // console.log("触发了下拉刷新")
+    this.setData({
+      goodsList : []
+    })
+    this.queryParam.pagenum = 1;
+    this.getGoodsList();
+    // wx.showToast({
+    //   title: '刷新成功',
+    //   icon: 'success',
+    //   duration: 1000
+    // })
+    
+  },
+  //滚动条触底事件
+  onReachBottom(){
+    // console.log(123)
+    if(this.TotalPages>this.queryParam.pagenum){
+      this.queryParam.pagenum++;
+      this.getGoodsList();
+    }else{
+      wx.showToast({
+        title: '没有更多了',
+        icon: 'none'
+      })
+      
+    }
   }
 })
