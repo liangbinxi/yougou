@@ -1,3 +1,25 @@
+<view class="btm_tool">
+    <view class="tool_item">
+        <text class="iconfont icon-kefu"></text>
+        <view class="tool_name">客服</view>
+    </view>
+    <view class="tool_item">
+        <text class="iconfont icon-yixianshi-"></text>
+        <view class="tool_name">分享</view>
+    </view>
+    <view class="tool_item">
+        <text class="iconfont icon-gouwuche"></text>
+        <view class="tool_name">购物车</view>
+    </view>
+    <view class="tool_item btn_cart">
+          加入购物车
+      </view>
+    <view class="tool_item btn_buy">
+          立即购买
+    </view>
+</view>
+  
+
 <view class="good_swiper">
     <swiper
     indicator-dots

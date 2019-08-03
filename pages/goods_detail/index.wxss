@@ -1,3 +1,6 @@
+page {
+  padding-bottom: 90rpx;
+}
 .good_swiper swiper {
   height: 50vh;
 }
@@ -44,4 +47,35 @@
   font-weight: 600;
   padding: 10rpx;
   border-bottom: 10rpx solid #dedede;
+}
+.btm_tool {
+  height: 90rpx;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  border-top: 1rpx solid #dedede;
+}
+.btm_tool .tool_item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btm_tool .btn_cart {
+  flex: 2;
+  background: orange;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+}
+.btm_tool .btn_buy {
+  flex: 2;
+  background: orangered;
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
 }

@@ -21,6 +21,7 @@ Page({
       })
     })
   },
+  //点击轮播图放大预览
   handlePreviewImage(e){
     // console.log(e)
     // console.log(this.data.goodsInfo)
