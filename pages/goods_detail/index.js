@@ -20,5 +20,16 @@ Page({
         }
       })
     })
+  },
+  handlePreviewImage(e){
+    // console.log(e)
+    // console.log(this.data.goodsInfo)
+    const {index} = e.currentTarget.dataset;
+    const urls = this.data.goodsInfo.pics.map(v=>v.pics_big);
+    const current = urls[index];
+    wx.previewImage({
+      current,
+      urls
+    })
   }
 })
