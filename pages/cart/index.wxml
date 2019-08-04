@@ -1,8 +1,12 @@
 
 <view class="revice_wrap">
-    <view class="revice_btn_wrap">
+    <view wx:if="{{!(address.all&&address.all)}}" class="revice_btn_wrap">
         <button type="primary" plain bindtap="handleChooseAddress">收货地址</button>
     </view>   
+    <view wx:else>
+        {{address.all}}
+    </view>
+      
 </view>
   
 
