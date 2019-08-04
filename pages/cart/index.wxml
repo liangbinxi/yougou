@@ -38,6 +38,21 @@
         </view>  
     </view>
 </view>
+<view class="btm_tool">
+    <view class="all_check_wrap">
+        <checkbox-group bindchange="">
+            <checkbox  color="red">
+                全选
+            </checkbox>
+        </checkbox-group>
+    </view>
+    <view class="total_price_wrap">
+        <view class="total_price">合计：</view>
+        <view class="freight_tips">包含运费</view>
+    </view>
+    <view class="cart_pay">结算(10)</view>
+</view>
+  
   
   
 
