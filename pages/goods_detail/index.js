@@ -19,7 +19,7 @@ Page({
           goods_name :res.goods_name,
           goods_price : res.goods_price,
           pics : res.pics,
-          goods_introduce : res.goods_introduce
+          goods_introduce : res.goods_introduce.replace('.webp','.jpg')
         }
       })
     })
