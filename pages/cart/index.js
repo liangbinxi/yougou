@@ -2,7 +2,8 @@ import { getSetting, chooseAddress, openSetting } from '../../utils/asyncwx.js';
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
-    address:{}
+    address:{},
+    cart:{}
   },
   async handleChooseAddress(){
     
@@ -21,8 +22,10 @@ Page({
       wx.setStorageSync("address", res2);
   },
   onShow(){
+
     this.setData({
-      address : wx.getStorageSync("address") || {}
+      address : wx.getStorageSync("address") || {},
+      cart : wx.getStorageSync("cart") || {}
     })
-  }
+  },
 })

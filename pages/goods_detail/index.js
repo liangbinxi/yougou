@@ -48,6 +48,7 @@ Page({
         console.log("第一次该商品添加购物车")
         cart[this.GoodsObj.goods_id] = this.GoodsObj;
         cart[this.GoodsObj.goods_id].num =1;
+        cart[this.GoodsObj.goods_id].checked =true;
     }
     setStorageCart(cart);
     wx.showToast({
