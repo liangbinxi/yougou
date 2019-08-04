@@ -1,5 +1,7 @@
 import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
+import {getStorageCate,setStorageCate} from '../../utils/storage.js'
+
 Page({
   data:{
     //分类左侧列表数组
@@ -13,10 +15,10 @@ Page({
   },
   Cates:[],
   onLoad(){
-    const cates = wx.getStorageSync("cates");
+    const cates = getStorageCate();
       // console.log(cates)
       if(!cates){
-        // console.log("没有数据")
+        console.log("没有数据")
         this.getCategoryList();
       }else{
         // console.log("有数据")
@@ -43,8 +45,8 @@ Page({
     .then(result=>{
       // console.log(result)
       this.Cates = result;
-      wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
-        
+      // wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
+      setStorageCate({time:Date.now(),data:this.Cates})
       const leftMenuList = this.Cates.map(v=>({
         cat_id:v.cat_id,cat_name:v.cat_name
       }))

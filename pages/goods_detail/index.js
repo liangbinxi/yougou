@@ -1,5 +1,6 @@
 import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
+import {getStorageCart,setStorageCart} from '../../utils/storage.js'
 Page({
   data: {
     goodsInfo:{}
@@ -36,7 +37,9 @@ Page({
     })
   },
   handleCartAdd(){
-    let cart = wx.getStorageSync("cart")||{};
+    // let cart = wx.getStorageSync("cart")||{};
+    let cart = getStorageCart()||{};
+      
     if(cart[this.GoodsObj.goods_id]){
       console.log("数据已经存在")
       cart[this.GoodsObj.goods_id].num++;
@@ -46,7 +49,7 @@ Page({
         cart[this.GoodsObj.goods_id] = this.GoodsObj;
         cart[this.GoodsObj.goods_id].num =1;
     }
-    wx.setStorageSync('cart', cart);
+    setStorageCart(cart);
     wx.showToast({
       title: '添加成功',
       icon: 'none',
