@@ -17,7 +17,7 @@
         wx:for-item="value"
         wx:key="value">
             <view class="cart_chk_wrap">
-                <checkbox-group bindchange="">
+                <checkbox-group bindchange="checkedChange" data-index="{{key}}">
                     <checkbox checked="{{value.checked}}" color="red"></checkbox>
                 </checkbox-group>
             </view>
@@ -29,9 +29,9 @@
                 <view class="goods_price_wrap">
                     <view class="goods_price">¥{{value.goods_price}}</view>
                     <view class="cart_tool">
-                        <text class="cart_num_edit">-</text>
+                        <text class="cart_num_edit" bindtap="handleNumEdit" data-operate="{{-1}}" data-id="{{value.goods_id}}">-</text>
                         <text class="cart_num">{{value.num}}</text>
-                        <text class="cart_num_edit">+</text>
+                        <text class="cart_num_edit" bindtap="handleNumEdit" data-operate="{{1}}" data-id="{{value.goods_id}}">+</text>
                     </view>
                 </view>
             </view>
@@ -40,17 +40,17 @@
 </view>
 <view class="btm_tool">
     <view class="all_check_wrap">
-        <checkbox-group bindchange="">
-            <checkbox  color="red">
+        <checkbox-group bindchange="isAllchecked">
+            <checkbox  color="red" checked="{{isAllchecked}}">
                 全选
             </checkbox>
         </checkbox-group>
     </view>
     <view class="total_price_wrap">
-        <view class="total_price">合计：</view>
+        <view class="total_price">合计：{{totalPrice}}</view>
         <view class="freight_tips">包含运费</view>
     </view>
-    <view class="cart_pay">结算(10)</view>
+    <view class="cart_pay">结算({{goodNum}})</view>
 </view>
   
   

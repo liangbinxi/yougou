@@ -43,3 +43,19 @@ export const chooseAddress = () =>{
           
     })
 }
+/**
+ * promise形式的wx.showModal
+ * @param {object} param0 想要传递的参数
+ */
+export const showModal = ({content}) =>{
+   return new Promise((resolve,reject)=>{
+        wx.showModal({
+            title: '提示',
+            content: content,
+            success: (result) => {
+                resolve(result)
+            }
+        });
+          
+    })
+}
