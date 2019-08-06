@@ -1,4 +1,4 @@
-import { getSetting, chooseAddress, openSetting, showModal } from '../../utils/asyncwx.js';
+import { getSetting, chooseAddress, openSetting, showModal, showToast } from '../../utils/asyncwx.js';
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   data: {
@@ -6,7 +6,9 @@ Page({
     cart:{},
     totalPrice:0,
     goodNum:0,
-    isAllchecked:false
+    isAllchecked:false,
+    totalNum:0,
+    hasGoods:false
   },
   async handleChooseAddress(){
     
@@ -50,12 +52,17 @@ Page({
         isAllchecked = false;
       }
     });
+    //判断购物车是否为空
+    const hasGoods = cartArr.length? true:false;
     this.setData({
       cart,
       totalPrice,
       goodNum,
-      isAllchecked
+      isAllchecked,
+      hasGoods
     })
+    wx.setStorageSync("cart", cart);
+      
   },
 
   checkedChange(e){
@@ -80,6 +87,7 @@ Page({
     console.log(cart)
     this.totalPrice(cart)
   },
+  //用户点击商品数量增加或减少
   async handleNumEdit(e){
     // console.log(e)
     const {operate,id} = e.currentTarget.dataset;
@@ -113,5 +121,22 @@ Page({
       this.totalPrice(cart)
     }
     
+  },
+  //点击结算按钮
+  async handlePay(){
+    const {address,goodNum} = this.data;
+    // let cartArr = Object.values(cart);
+    // let hasChecked = cartArr.some(v=>v.checked);
+    if(!address.all){
+      await showToast({title:"您没有选择收货地址"})
+    }else if(goodNum<=0){
+      await showToast({title:"您没有选择要结算的商品！"})
+    }else{
+      wx.navigateTo({
+        url: '/pages/pay/index',
+       
+      });
+        
+    }
   }
 })

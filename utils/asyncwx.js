@@ -59,3 +59,20 @@ export const showModal = ({content}) =>{
           
     })
 }
+
+/**
+ * promise形式的wx.showToast
+ * @param {object} param0 想要传递的参数
+ */
+export const showToast = ({title}) =>{
+    return new Promise((resolve,reject)=>{
+        wx.showToast({
+            title: title,
+            icon: 'none',
+            success: (result) => {
+                resolve(result)
+            }
+        });
+          
+    })
+}
