@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -75,6 +75,13 @@
 					"id": -1,
 					"name": "购物车",
 					"pathName": "pages/cart/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "结算页面",
+					"pathName": "pages/pay/index",
 					"query": "",
 					"scene": null
 				}

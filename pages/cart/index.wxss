@@ -2,13 +2,23 @@ page {
   padding-bottom: 90rpx;
 }
 .revice_wrap {
-  border-bottom: 4rpx solid #666;
+  border-bottom: 1rpx solid #000;
 }
 .revice_wrap .revice_btn_wrap {
-  padding: 20rpx;
+  padding: 20rpx 0;
 }
 .revice_wrap .revice_btn_wrap button {
   width: 50%;
+}
+.revice_wrap .revice_address {
+  display: flex;
+  padding: 20rpx;
+  color: #000;
+  font-size: 30rpx;
+}
+.revice_wrap .revice_address .revice_phone {
+  text-align: right;
+  flex: 1;
 }
 .cart_main .cart_main_title {
   padding: 20rpx;
